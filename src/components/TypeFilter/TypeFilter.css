@@ -1,0 +1,40 @@
+.type-filter select:hover {
+  border-color: var(--border-hover);
+}
+.type-filter {
+  position: relative;
+}
+.type-filter select {
+  width: 100%;
+  height: 46px;
+  padding: 0 40px 0 16px;
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--field-bg);
+  color: var(--field-text);
+  font-size: 13px;
+  cursor: pointer;
+}
+.type-filter > svg {
+  position: absolute;
+  top: 13px;
+  right: 12px;
+  color: var(--field-icon);
+  pointer-events: none;
+}
+@media (min-width: 1051px) {
+  .type-filter select {
+    height: 52px;
+    font-size: 15px;
+  }
+  .type-filter > svg {
+    top: 16px;
+  }
+}
+@media (max-width: 580px) {
+  .type-filter select {
+    font-size: 12px;
+    padding-left: 12px;
+  }
+}

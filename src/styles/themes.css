@@ -1,0 +1,85 @@
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --page-bg: #fff;
+  --text: #14284d;
+  --muted: #7388a5;
+  --text-secondary: #456181;
+  --blue: #2d7cff;
+  --blue-dark: #1761d6;
+  --border: #dce7f3;
+  --header-border: #e9eff7;
+  --nav-text: #627897;
+  --nav-active: #214575;
+  --icon: #6681a2;
+  --soft-bg: #f3f7fc;
+  --field-bg: #fff;
+  --field-text: #244568;
+  --field-icon: #7391b8;
+  --placeholder: #8a9db7;
+  --border-hover: #a7c9f4;
+  --secondary-button-text: #216bef;
+  --secondary-button-bg: #f4f9ff;
+  --secondary-button-border: #d5e6ff;
+  --secondary-button-hover: #e8f2ff;
+  --secondary-button-hover-border: #a4c8ff;
+  --card-bg: linear-gradient(150deg, #fff 50%, #f7faff);
+  --card-border-hover: #a9caf6;
+  --card-shadow: 0 2px 4px #24467507;
+  --card-shadow-hover: 0 8px 22px #406da014;
+  --card-title: #172f52;
+  --card-number: #8197b4;
+  --favorite-icon: #6885ad;
+  --favorite-hover: #f14e65;
+  --favorite-hover-bg: #fff0f3;
+  --footer-text: #8c9db3;
+  --hero-bg: #c5e9fd;
+  --hero-overlay: transparent;
+  --hero-title: #122b48;
+  --hero-text: #365973;
+  --hero-eyebrow: #38667d;
+  --focus-ring: #80b6ff;
+}
+
+:root:has(.pokedex-app[data-theme='dark']),
+[data-theme='dark'] {
+  color-scheme: dark;
+  --page-bg: #0d1727;
+  --text: #e6edf8;
+  --muted: #9aadc6;
+  --text-secondary: #b5c7df;
+  --blue: #3986ff;
+  --blue-dark: #2674ed;
+  --border: #2c3d56;
+  --header-border: #26364e;
+  --nav-text: #a5b7d0;
+  --nav-active: #e6edf8;
+  --icon: #a9c8f2;
+  --soft-bg: #1b2c45;
+  --field-bg: #152238;
+  --field-text: #dce8f8;
+  --field-icon: #9cb7d9;
+  --placeholder: #93a9c5;
+  --border-hover: #659be5;
+  --secondary-button-text: #a4caff;
+  --secondary-button-bg: #182d4a;
+  --secondary-button-border: #314f78;
+  --secondary-button-hover: #213b5d;
+  --secondary-button-hover-border: #6497d9;
+  --card-bg: linear-gradient(150deg, #19283e, #142135);
+  --card-border-hover: #598cd1;
+  --card-shadow: 0 2px 6px #0000001f;
+  --card-shadow-hover: 0 8px 24px #00000040;
+  --card-title: #eef4ff;
+  --card-number: #9eb4d1;
+  --favorite-icon: #a2bcde;
+  --favorite-hover: #ff8fa3;
+  --favorite-hover-bg: #452536;
+  --footer-text: #9aadc6;
+  --hero-bg: #162c46;
+  --hero-overlay: #09172abd;
+  --hero-title: #f0f6ff;
+  --hero-text: #c0d4ec;
+  --hero-eyebrow: #b3d5f4;
+  --focus-ring: #91c1ff;
+}

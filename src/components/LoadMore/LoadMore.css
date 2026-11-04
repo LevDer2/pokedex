@@ -1,0 +1,34 @@
+.catalog-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 28px;
+}
+.load-more {
+  min-width: 220px;
+}
+.load-more svg {
+  width: 17px;
+  height: 17px;
+}
+.catalog-more p {
+  color: var(--footer-text);
+  font-size: 11px;
+}
+@media (min-width: 1051px) {
+  .load-more {
+    min-width: 250px;
+  }
+  .catalog-more p {
+    font-size: 13px;
+  }
+}
+@media (max-width: 580px) {
+  .catalog-more {
+    padding-top: 25px;
+  }
+  .load-more {
+    width: 100%;
+  }
+}

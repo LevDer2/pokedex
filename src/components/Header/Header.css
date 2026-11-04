@@ -1,0 +1,181 @@
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 78px;
+  padding: 0 34px;
+  border-bottom: 1px solid var(--header-border);
+  background: var(--page-bg);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 25px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.pokeball-logo {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #14284d;
+  border-radius: 50%;
+  background: linear-gradient(#ff575e 0 46%, #14284d 46% 54%, white 54%);
+  transform: rotate(-12deg);
+}
+.pokeball-logo::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #14284d;
+  border-radius: 50%;
+  background: white;
+}
+.main-nav {
+  display: flex;
+  align-self: stretch;
+  gap: 30px;
+  margin-left: auto;
+}
+.nav-item {
+  position: relative;
+  padding: 0 3px;
+  background: none;
+  border: 0;
+  color: var(--nav-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+.nav-item:hover {
+  color: var(--blue);
+}
+.nav-item.is-active {
+  color: var(--nav-active);
+}
+.nav-item.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--blue);
+  border-radius: 3px 3px 0 0;
+}
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  color: var(--icon);
+  background: var(--soft-bg);
+  border-radius: 50%;
+}
+.theme-toggle:hover {
+  border-color: var(--border-hover);
+  background: var(--secondary-button-hover);
+}
+.theme-toggle span {
+  display: flex;
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+.theme-toggle .theme-icon-sun,
+[data-theme='dark'] .theme-toggle .theme-icon-moon {
+  display: none;
+}
+[data-theme='dark'] .theme-toggle .theme-icon-sun {
+  display: flex;
+}
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 5;
+  padding: 12px;
+  transform: translateY(-150%);
+  background: var(--page-bg);
+  color: var(--blue);
+  border-radius: 8px;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+@media (min-width: 1051px) {
+  .site-header {
+    padding-inline: clamp(32px, 4vw, 72px);
+  }
+  .site-header {
+    min-height: 88px;
+    gap: 36px;
+  }
+  .brand {
+    font-size: 28px;
+  }
+  .main-nav {
+    gap: 36px;
+  }
+  .nav-item {
+    font-size: 15px;
+  }
+}
+@media (max-width: 800px) {
+  .site-header {
+    padding-inline: 24px;
+    gap: 20px;
+  }
+  .brand {
+    font-size: 22px;
+  }
+  .main-nav {
+    gap: 20px;
+  }
+}
+@media (max-width: 580px) {
+  .site-header {
+    min-height: 104px;
+    padding: 16px 18px 0;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 10px;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  .pokeball-logo {
+    width: 30px;
+    height: 30px;
+  }
+  .pokeball-logo::after {
+    top: 8px;
+    left: 8px;
+    width: 7px;
+    height: 7px;
+  }
+  .theme-toggle {
+    margin-left: auto;
+  }
+  .main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 40px;
+  }
+  .nav-item {
+    min-height: 40px;
+    font-size: 12px;
+  }
+}

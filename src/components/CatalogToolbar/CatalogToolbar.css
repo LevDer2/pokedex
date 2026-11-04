@@ -1,0 +1,50 @@
+.catalog-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px auto;
+  gap: 14px;
+}
+.button-random {
+  color: var(--secondary-button-text);
+  border-color: var(--secondary-button-border);
+  background: var(--secondary-button-bg);
+  white-space: nowrap;
+}
+.button-random:hover {
+  background: var(--secondary-button-hover);
+  border-color: var(--secondary-button-hover-border);
+}
+@media (min-width: 1051px) {
+  .catalog-toolbar {
+    grid-template-columns: minmax(0, 1fr) 240px auto;
+    gap: 18px;
+  }
+}
+@media (max-width: 1050px) {
+  .catalog-toolbar {
+    grid-template-columns: minmax(0, 1fr) 160px auto;
+    gap: 10px;
+  }
+  .button-random {
+    padding-inline: 14px;
+  }
+}
+@media (max-width: 800px) {
+  .catalog-toolbar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+@media (max-width: 580px) {
+  .catalog-toolbar {
+    gap: 10px;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
+  .button-random {
+    gap: 6px;
+    font-size: 10px;
+    padding-inline: 8px;
+  }
+  .button-random svg {
+    width: 17px;
+    height: 17px;
+  }
+}
