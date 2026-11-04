@@ -1,0 +1,32 @@
+.pokemon-name-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pokemon-name-item {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--card-title);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  font-size: 16px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 580px) {
+  .pokemon-name-list {
+    gap: 10px;
+  }
+
+  .pokemon-name-item {
+    padding: 16px;
+    font-size: 14px;
+  }
+}

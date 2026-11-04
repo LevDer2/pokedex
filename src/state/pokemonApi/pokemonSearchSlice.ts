@@ -1,46 +1,88 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { searchPokemon } from '../../api/pokemonApi';
+import { getPokemonNames } from '../../api/pokemonApi.ts';
 
 interface PokemonSearchState {
-  name: string;
+  query: string;
+  matches: string[];
+  allNames: string[];
+  hasLoadedList: boolean;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: PokemonSearchState = {
-  name: '',
+  query: '',
+  matches: [],
+  allNames: [],
+  hasLoadedList: false,
   isLoading: false,
   error: null,
 };
 
-export const fetchPokemonByName = createAsyncThunk<string, string>(
-  'pokemonSearch/fetchByName',
-  async (name) => {
-    const pokemon = await searchPokemon(name.trim());
-    return pokemon.name;
+interface PokemonSearchResult {
+  allNames: string[];
+  matches: string[];
+}
+
+export const fetchPokemonByName = createAsyncThunk<
+  PokemonSearchResult,
+  string,
+  { state: { pokemonSearch: PokemonSearchState }; rejectValue: string }
+>(
+  'pokemonSearch/fetchPokemonByName',
+  async (name, { getState, rejectWithValue }) => {
+    const query = name.trim().toLowerCase();
+    const searchState = getState().pokemonSearch;
+
+    try {
+      const allNames = searchState.hasLoadedList ? searchState.allNames : await getPokemonNames();
+      return {
+        allNames,
+        matches: allNames.filter((pokemonName) => pokemonName.toLowerCase().includes(query)),
+      };
+    } catch {
+      return rejectWithValue("Can not download Pokemon's list");
+    }
+  },
+  {
+    condition: (name, { getState }) => {
+      return Boolean(name.trim()) && !getState().pokemonSearch.isLoading;
+    },
   },
 );
 
 const pokemonSearchSlice = createSlice({
   name: 'pokemonSearch',
   initialState,
-  reducers: {},
+  reducers: {
+    resetSearch(state) {
+      if (state.isLoading) return;
+
+      state.query = '';
+      state.matches = [];
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPokemonByName.pending, (state) => {
+      .addCase(fetchPokemonByName.pending, (state, action) => {
         state.isLoading = true;
-        state.name = '';
+        state.query = action.meta.arg.trim().toLowerCase();
+        state.matches = [];
         state.error = null;
       })
       .addCase(fetchPokemonByName.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.name = action.payload;
+        state.allNames = action.payload.allNames;
+        state.hasLoadedList = true;
+        state.matches = action.payload.matches;
       })
-      .addCase(fetchPokemonByName.rejected, (state) => {
+      .addCase(fetchPokemonByName.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = 'Не вдалося знайти покемона. Перевір ім’я та підключення.';
+        state.error = action.payload ?? 'Try search your Pokemon later';
       });
   },
 });
 
+export const { resetSearch } = pokemonSearchSlice.actions;
 export default pokemonSearchSlice.reducer;

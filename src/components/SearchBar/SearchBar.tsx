@@ -1,12 +1,16 @@
 import { SearchIcon } from '../Icons/Icons';
 import './SearchBar.css';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  isLoading: boolean;
+}
+
+export default function SearchBar({ isLoading }: SearchBarProps) {
   return (
-    <div className="search-bar" role="search" aria-label="Пошук покемонів">
+    <div className="search-bar" role="search">
       <div className="search-field">
         <label className="visually-hidden" htmlFor="pokemon-search">
-          Пошук покемона за ім’ям
+          Searching for name
         </label>
         <SearchIcon />
         <input
@@ -15,10 +19,13 @@ export default function SearchBar() {
           type="search"
           placeholder="Пошук за ім’ям…"
           autoComplete="off"
+          autoCapitalize="none"
+          spellCheck={false}
+          disabled={isLoading}
         />
       </div>
-      <button className="button button-primary search-button" type="button">
-        Знайти
+      <button className="button button-primary search-button" type="submit" disabled={isLoading}>
+        {isLoading ? 'Search...' : 'Found'}
       </button>
     </div>
   );

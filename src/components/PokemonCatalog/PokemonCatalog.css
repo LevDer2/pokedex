@@ -23,6 +23,21 @@
   color: var(--text-secondary);
   font-weight: 600;
 }
+.catalog-search-query {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.catalog-message {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  background: var(--soft-bg);
+  font-size: 14px;
+  line-height: 1.6;
+}
 @media (min-width: 1051px) {
   .catalog {
     padding-inline: clamp(32px, 4vw, 72px);
