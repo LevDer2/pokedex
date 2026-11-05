@@ -2,10 +2,10 @@ import CatalogToolbar from '../CatalogToolbar/CatalogToolbar';
 import LoadMore from '../LoadMore/LoadMore';
 import type { PokemonCardProps } from '../PokemonCard/PokemonCard';
 import PokemonList from '../PokemonList/PokemonList';
-import PokemonNameList from '../PokemonNameList/PokemonNameList';
 import './PokemonCatalog.css';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../state/store.ts';
+import { POKEMON_DETAILS_LIMIT } from '../../api/pokemonApi';
 
 interface PokemonCatalogProps {
   pokemon: PokemonCardProps[];
@@ -40,8 +40,14 @@ export default function PokemonCatalog({ pokemon }: PokemonCatalogProps) {
       {!isLoading && !error && hasSearch && (
         <>
           <p className="catalog-search-query">All matches for: {query}</p>
+          {matches.length > POKEMON_DETAILS_LIMIT && (
+            <p className="catalog-search-query">
+              Shows {POKEMON_DETAILS_LIMIT} from {matches.length} query. Write your pokemon name
+              more clearly for more better results
+            </p>
+          )}
           {matches.length > 0 ? (
-            <PokemonNameList names={matches} />
+            <PokemonList names={matches} />
           ) : (
             <p className="catalog-message" role="status">
               Not founded matches for: {query}

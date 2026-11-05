@@ -46,7 +46,13 @@ export const fetchPokemonByName = createAsyncThunk<
   },
   {
     condition: (name, { getState }) => {
-      return Boolean(name.trim()) && !getState().pokemonSearch.isLoading;
+      const query = name.trim().toLowerCase();
+      const searchState = getState().pokemonSearch;
+
+      if (!query || searchState.isLoading) return false;
+
+      // Повтор успішного запиту ігноруємо, але після помилки дозволяємо спробувати знову.
+      return query !== searchState.query || searchState.error !== null;
     },
   },
 );

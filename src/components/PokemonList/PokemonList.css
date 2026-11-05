@@ -3,6 +3,18 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 17px;
 }
+.pokemon-list-message {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  background: var(--soft-bg);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pokemon-list-message button {
+  margin-top: 14px;
+}
 @media (min-width: 1051px) {
   .pokemon-grid {
     gap: 20px;

@@ -1,13 +1,40 @@
-export async function searchPokemon(name: string): Promise<{ name: string }> {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(name.toLowerCase())}`,
-  );
+export interface PokemonDetails {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string | null;
+  };
+}
+
+export const POKEMON_DETAILS_LIMIT = 20;
+
+export async function searchPokemon(name: string, signal?: AbortSignal): Promise<PokemonDetails> {
+  const query = name.trim().toLowerCase();
+
+  if (!query) {
+    throw new Error('Вкажи ім’я покемона.');
+  }
+
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(query)}`, {
+    signal,
+  });
 
   if (!response.ok) {
-    throw new Error('Pokemon not found');
+    throw new Error(
+      response.status === 404 ? 'Покемона не знайдено.' : 'Не вдалося завантажити покемона.',
+    );
   }
 
   return response.json();
+}
+
+export async function getPokemonDetails(
+  names: string[],
+  signal?: AbortSignal,
+): Promise<PokemonDetails[]> {
+  return Promise.all(
+    names.slice(0, POKEMON_DETAILS_LIMIT).map((name) => searchPokemon(name, signal)),
+  );
 }
 
 interface PokemonListResponse {
