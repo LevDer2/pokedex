@@ -4,8 +4,8 @@ import { DiceIcon } from '../Icons/Icons';
 import type { SubmitEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { Dispatch, RootState } from '../../state/store';
-import { fetchPokemonByName } from '../../state/pokemonApi/pokemonSearchSlice';
 import './CatalogToolbar.css';
+import { fetchPokemonByName, resetSearch } from '../../state/pokemonApi/pokemonSearchSlice';
 
 export default function CatalogToolbar() {
   const dispatch = useDispatch<Dispatch>();
@@ -17,7 +17,12 @@ export default function CatalogToolbar() {
     const formData = new FormData(event.currentTarget);
     const name = String(formData.get('pokemon-search') ?? '').trim();
 
-    if (!name || isLoading) return;
+    if (isLoading) return;
+
+    if (!name) {
+      dispatch(resetSearch());
+      return;
+    }
 
     void dispatch(fetchPokemonByName(name));
   }

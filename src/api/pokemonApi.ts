@@ -9,7 +9,7 @@ export interface PokemonDetails {
 export const POKEMON_DETAILS_LIMIT = 20;
 
 export async function searchPokemon(name: string, signal?: AbortSignal): Promise<PokemonDetails> {
-  const query = name.trim().toLowerCase();
+  const query = name.trim().toLowerCase().replace(/\s+/g, '-');
 
   if (!query) {
     throw new Error('Вкажи ім’я покемона.');

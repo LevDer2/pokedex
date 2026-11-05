@@ -3,9 +3,10 @@ import './SearchBar.css';
 
 interface SearchBarProps {
   isLoading: boolean;
+  onClear: () => void;
 }
 
-export default function SearchBar({ isLoading }: SearchBarProps) {
+export default function SearchBar({ isLoading, onClear }: SearchBarProps) {
   return (
     <div className="search-bar" role="search">
       <div className="search-field">
@@ -22,6 +23,11 @@ export default function SearchBar({ isLoading }: SearchBarProps) {
           autoCapitalize="none"
           spellCheck={false}
           disabled={isLoading}
+          onChange={(event) => {
+            if (event.currentTarget.value === '') {
+              onClear();
+            }
+          }}
         />
       </div>
       <button className="button button-primary search-button" type="submit" disabled={isLoading}>

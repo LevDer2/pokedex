@@ -31,7 +31,7 @@ export const fetchPokemonByName = createAsyncThunk<
 >(
   'pokemonSearch/fetchPokemonByName',
   async (name, { getState, rejectWithValue }) => {
-    const query = name.trim().toLowerCase();
+    const query = name.trim().toLowerCase().replace(/\s+/g, '-');
     const searchState = getState().pokemonSearch;
 
     try {
