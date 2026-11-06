@@ -6,6 +6,30 @@ export interface PokemonDetails {
   };
 }
 
+interface PokemonType {
+  name: string;
+  url: string;
+}
+
+interface PokemonTypesResponse {
+  count: number;
+  results: PokemonType[];
+}
+
+interface PokemonListResponse {
+  next: string | null;
+  results: { name: string }[];
+}
+
+interface PokemonTypeResponse {
+  pokemon: {
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }[];
+}
+
 export const POKEMON_DETAILS_LIMIT = 20;
 
 export async function searchPokemon(name: string, signal?: AbortSignal): Promise<PokemonDetails> {
@@ -37,11 +61,6 @@ export async function getPokemonDetails(
   );
 }
 
-interface PokemonListResponse {
-  next: string | null;
-  results: { name: string }[];
-}
-
 export async function getPokemonNames(): Promise<string[]> {
   const names: string[] = [];
   let nextUrl: string | null = 'https://pokeapi.co/api/v2/pokemon?limit=1000';
@@ -59,4 +78,24 @@ export async function getPokemonNames(): Promise<string[]> {
   }
 
   return names;
+}
+
+export async function getPokemonTypes(): Promise<PokemonType[]> {
+  const response = await fetch('https://pokeapi.co/api/v2/type?limit=100');
+  if (!response.ok) {
+    throw new Error('Failed to fetch Pokémon types');
+  }
+  const data: PokemonTypesResponse = await response.json();
+  return data.results;
+}
+
+export async function getPokemonNamesByType(type: string): Promise<string[]> {
+  const response = await fetch(`https://pokeapi.co/api/v2/type/${encodeURIComponent(type)}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to load Pokemon types');
+  }
+
+  const data: PokemonTypeResponse = await response.json();
+  return data.pokemon.map((item) => item.pokemon.name);
 }

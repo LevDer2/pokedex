@@ -1,33 +1,47 @@
+import { useEffect, useState } from 'react';
 import { ChevronDownIcon } from '../Icons/Icons';
 import './TypeFilter.css';
+import { getPokemonTypes } from '../../api/pokemonApi';
 
 export default function TypeFilter() {
+  const [types, setTypes] = useState<string[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadTypes() {
+      try {
+        const data = await getPokemonTypes();
+        const pokemonTypes = data.map((item) => item.name);
+        if (!cancelled) {
+          setTypes(pokemonTypes);
+        }
+      } catch (error) {
+        console.error('Failed to load Pokemon types:', error);
+      }
+    }
+    void loadTypes();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <div className="type-filter">
       <label className="visually-hidden" htmlFor="pokemon-type">
-        Тип покемона
+        Pokemon type:
       </label>
+
       <select id="pokemon-type" name="pokemon-type" defaultValue="all">
-        <option value="all">Усі типи</option>
-        <option value="normal">Звичайний</option>
-        <option value="fire">Вогняний</option>
-        <option value="water">Водяний</option>
-        <option value="grass">Трав’яний</option>
-        <option value="electric">Електричний</option>
-        <option value="ice">Крижаний</option>
-        <option value="fighting">Бойовий</option>
-        <option value="poison">Отруйний</option>
-        <option value="ground">Земляний</option>
-        <option value="flying">Літаючий</option>
-        <option value="psychic">Психічний</option>
-        <option value="bug">Комашиний</option>
-        <option value="rock">Кам’яний</option>
-        <option value="ghost">Примарний</option>
-        <option value="dragon">Драконячий</option>
-        <option value="dark">Темний</option>
-        <option value="steel">Сталевий</option>
-        <option value="fairy">Казковий</option>
+        <option value="all">All types</option>
+
+        {types.map((type) => (
+          <option key={type} value={type}>
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </option>
+        ))}
       </select>
+
       <ChevronDownIcon />
     </div>
   );

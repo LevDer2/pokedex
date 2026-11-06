@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPokemonNames } from '../../api/pokemonApi.ts';
+import { getPokemonNames, getPokemonNamesByType } from '../../api/pokemonApi.ts';
 
 interface PokemonSearchState {
   query: string;
@@ -36,9 +36,20 @@ export const fetchPokemonByName = createAsyncThunk<
 
     try {
       const allNames = searchState.hasLoadedList ? searchState.allNames : await getPokemonNames();
+      const typeNames =
+        pokemonType === 'all' ? null : new Set(await getPokemonNamesByType(pokemonType));
+
+      const matches = allNames.filter((pokemonName) => {
+        const matchesName = pokemonName.includes(query);
+
+        const matchesType = typeNames === null || typeNames.has(pokemonName);
+
+        return matchesName && matchesType;
+      });
+
       return {
         allNames,
-        matches: allNames.filter((pokemonName) => pokemonName.toLowerCase().includes(query)),
+        matches,
       };
     } catch {
       return rejectWithValue("Can not download Pokemon's list");
@@ -50,8 +61,6 @@ export const fetchPokemonByName = createAsyncThunk<
       const searchState = getState().pokemonSearch;
 
       if (!query || searchState.isLoading) return false;
-
-      // Повтор успішного запиту ігноруємо, але після помилки дозволяємо спробувати знову.
       return query !== searchState.query || searchState.error !== null;
     },
   },
