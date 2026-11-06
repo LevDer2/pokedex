@@ -10,6 +10,11 @@ interface PokemonSearchState {
   error: string | null;
 }
 
+interface PokemonSearchParams {
+  name: string;
+  pokemonType: string;
+}
+
 const initialState: PokemonSearchState = {
   query: '',
   matches: [],
@@ -26,11 +31,11 @@ interface PokemonSearchResult {
 
 export const fetchPokemonByName = createAsyncThunk<
   PokemonSearchResult,
-  string,
+  PokemonSearchParams,
   { state: { pokemonSearch: PokemonSearchState }; rejectValue: string }
 >(
   'pokemonSearch/fetchPokemonByName',
-  async (name, { getState, rejectWithValue }) => {
+  async ({ name, pokemonType }, { getState, rejectWithValue }) => {
     const query = name.trim().toLowerCase().replace(/\s+/g, '-');
     const searchState = getState().pokemonSearch;
 
@@ -56,12 +61,9 @@ export const fetchPokemonByName = createAsyncThunk<
     }
   },
   {
-    condition: (name, { getState }) => {
-      const query = name.trim().toLowerCase();
+    condition: (_params, { getState }) => {
       const searchState = getState().pokemonSearch;
-
-      if (!query || searchState.isLoading) return false;
-      return query !== searchState.query || searchState.error !== null;
+      return !searchState.isLoading;
     },
   },
 );
@@ -82,7 +84,7 @@ const pokemonSearchSlice = createSlice({
     builder
       .addCase(fetchPokemonByName.pending, (state, action) => {
         state.isLoading = true;
-        state.query = action.meta.arg.trim().toLowerCase();
+        state.query = action.meta.arg.name.trim().toLowerCase().replace(/\s+/g, '-');
         state.matches = [];
         state.error = null;
       })

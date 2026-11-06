@@ -16,19 +16,20 @@ export default function CatalogToolbar() {
 
     const formData = new FormData(event.currentTarget);
     const name = String(formData.get('pokemon-search') ?? '').trim();
+    const pokemonType = String(formData.get('pokemon-type') ?? 'all');
 
     if (isLoading) return;
 
-    if (!name) {
+    if (!name && pokemonType === 'all') {
       dispatch(resetSearch());
       return;
     }
 
-    void dispatch(fetchPokemonByName(name));
+    void dispatch(fetchPokemonByName({ name, pokemonType }));
   }
   return (
     <form className="catalog-toolbar" onSubmit={handleSubmit}>
-      <SearchBar isLoading={isLoading} />
+      <SearchBar isLoading={isLoading} onClear={() => dispatch(resetSearch())}/>
       <TypeFilter />
       <button className="button button-random" type="button">
         <DiceIcon />
