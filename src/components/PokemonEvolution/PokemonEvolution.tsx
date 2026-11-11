@@ -7,7 +7,6 @@ export interface PokemonEvolutionStage {
   name: string;
   image: string;
   types: PokemonBadge[];
-  // Умова переходу від попереднього етапу до цього, а не до наступного.
   condition?: string;
 }
 

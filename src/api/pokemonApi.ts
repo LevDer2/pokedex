@@ -6,6 +6,11 @@ export interface PokemonDetails {
   };
 }
 
+interface PokemonSpecies {
+  id: number;
+  name: string;
+}
+
 interface PokemonType {
   name: string;
   url: string;
@@ -47,6 +52,18 @@ export async function searchPokemon(name: string, signal?: AbortSignal): Promise
     throw new Error(
       response.status === 404 ? 'Покемона не знайдено.' : 'Не вдалося завантажити покемона.',
     );
+  }
+
+  return response.json();
+}
+
+export async function getPokemonSpecies(name: string) {
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon-species/${encodeURIComponent(name)}/`,
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to load Pokémon species');
   }
 
   return response.json();
