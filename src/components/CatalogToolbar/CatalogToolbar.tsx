@@ -7,7 +7,11 @@ import type { Dispatch, RootState } from '../../state/store';
 import './CatalogToolbar.css';
 import { fetchPokemonByName, resetSearch } from '../../state/pokemonApi/pokemonSearchSlice';
 
-export default function CatalogToolbar() {
+interface CatalogToolbarProps {
+  onRandomPokemon: () => void;
+}
+
+export default function CatalogToolbar({ onRandomPokemon }: CatalogToolbarProps) {
   const dispatch = useDispatch<Dispatch>();
   const isLoading = useSelector((state: RootState) => state.pokemonSearch.isLoading);
 
@@ -31,7 +35,7 @@ export default function CatalogToolbar() {
     <form className="catalog-toolbar" onSubmit={handleSubmit}>
       <SearchBar isLoading={isLoading} onClear={() => dispatch(resetSearch())}/>
       <TypeFilter />
-      <button className="button button-random" type="button">
+      <button className="button button-random" type="button" onClick={onRandomPokemon}>
         <DiceIcon />
         Випадковий покемон
       </button>

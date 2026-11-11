@@ -1,0 +1,144 @@
+.pokemon-evolution {
+  margin: 0 32px 28px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 18px, var(--page-bg) 18px 36px), var(--soft-bg);
+}
+.pokemon-evolution-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pokemon-evolution-heading > span {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.pokemon-evolution-path {
+  display: flex;
+  gap: 40px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pokemon-evolution-path + .pokemon-evolution-path {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.pokemon-evolution-stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.pokemon-evolution-portrait {
+  display: grid;
+  place-items: center;
+  width: min(100%, 160px);
+  aspect-ratio: 1;
+  margin: 0 auto 12px;
+  border: 3px solid var(--border);
+  border-radius: 50%;
+  background: var(--page-bg);
+  box-shadow: 0 5px 14px #07162b0d;
+}
+.pokemon-evolution-stage[aria-current='step'] .pokemon-evolution-portrait {
+  border-color: var(--blue);
+  background: var(--secondary-button-bg);
+}
+.pokemon-evolution-portrait img {
+  width: 94%;
+  height: 94%;
+  object-fit: contain;
+}
+.pokemon-evolution-portrait > span {
+  padding: 12px;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.pokemon-evolution-name {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.pokemon-evolution-number {
+  margin: 4px 0 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.pokemon-evolution-stage .pokemon-modal-badges {
+  justify-content: center;
+  gap: 5px;
+}
+.pokemon-evolution-stage .pokemon-modal-badge {
+  padding: 3px 8px;
+  min-height: 22px;
+  font-size: 10px;
+}
+.pokemon-evolution-transition {
+  position: absolute;
+  top: 55px;
+  left: -40px;
+  display: grid;
+  justify-items: center;
+  width: 40px;
+  color: var(--icon);
+}
+.pokemon-evolution-transition svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pokemon-evolution-transition span {
+  width: 58px;
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.pokemon-evolution-note {
+  margin-top: 16px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .pokemon-evolution {
+    margin: 0 20px 24px;
+    padding: 20px 16px;
+  }
+  .pokemon-evolution-path {
+    flex-direction: column;
+    gap: 0;
+  }
+  .pokemon-evolution-stage + .pokemon-evolution-stage {
+    margin-top: 18px;
+  }
+  .pokemon-evolution-transition {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    margin-bottom: 14px;
+  }
+  .pokemon-evolution-transition svg {
+    transform: rotate(90deg);
+  }
+  .pokemon-evolution-transition span {
+    width: auto;
+    max-width: 160px;
+    margin: 0;
+    text-align: left;
+  }
+}
