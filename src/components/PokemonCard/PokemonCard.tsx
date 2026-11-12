@@ -25,7 +25,7 @@ export default function PokemonCard({ number, name, image, openPokemonModal }: P
 
       <div className="pokemon-info">
         <p className="pokemon-number">#{number}</p>
-        <h3>{name}</h3>
+        <h3>{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
       </div>
     </article>
   );

@@ -37,6 +37,23 @@ interface PokemonTypeResponse {
 
 export const POKEMON_DETAILS_LIMIT = 20;
 
+export async function getPokemonPage(
+  offset: number,
+  limit: number,
+): Promise<{ names: string[]; hasMore: boolean }> {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+
+  if (!response.ok) {
+    throw new Error('Failed to load Pokémon page');
+  }
+
+  const data: PokemonListResponse = await response.json();
+
+  return {
+    names: data.results.map((item) => item.name),
+    hasMore: data.next !== null,
+  };
+}
 export async function searchPokemon(name: string, signal?: AbortSignal): Promise<PokemonDetails> {
   const query = name.trim().toLowerCase().replace(/\s+/g, '-');
 

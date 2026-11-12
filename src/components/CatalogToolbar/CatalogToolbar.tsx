@@ -33,9 +33,9 @@ export default function CatalogToolbar({ onRandomPokemon }: CatalogToolbarProps)
   }
   return (
     <form className="catalog-toolbar" onSubmit={handleSubmit}>
-      <SearchBar isLoading={isLoading} onClear={() => dispatch(resetSearch())}/>
+      <SearchBar isLoading={isLoading} onClear={() => dispatch(resetSearch())} />
       <TypeFilter />
-      <button className="button button-random" type="button" onClick={onRandomPokemon}>
+      <button className="button button-random" type="button" onClick={() => onRandomPokemon()}>
         <DiceIcon />
         Випадковий покемон
       </button>

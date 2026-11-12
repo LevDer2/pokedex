@@ -1,23 +1,39 @@
 import CatalogToolbar from '../CatalogToolbar/CatalogToolbar';
 import LoadMore from '../LoadMore/LoadMore';
-import type { PokemonCardProps } from '../PokemonCard/PokemonCard';
 import PokemonList from '../PokemonList/PokemonList';
 import './PokemonCatalog.css';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../../state/store.ts';
+import type { Dispatch, RootState } from '../../state/store.ts';
 import { POKEMON_DETAILS_LIMIT } from '../../api/pokemonApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchMorePokemon } from '../../state/pokemonApi/pokemonLoadMoreSlice.ts';
 
 interface PokemonCatalogProps {
-  pokemon: PokemonCardProps[];
   openPokemonModal: () => void;
 }
 
-export default function PokemonCatalog({ pokemon, openPokemonModal }: PokemonCatalogProps) {
+export default function PokemonCatalog({ openPokemonModal }: PokemonCatalogProps) {
   const { query, matches, isLoading, error } = useSelector(
     (state: RootState) => state.pokemonSearch,
   );
   const hasSearch = query !== '';
-  const resultCount = hasSearch ? matches.length : pokemon.length;
+  const loadedPokemon = useSelector((state: RootState) => state.pokemonLoadMore.pokemon);
+  const resultCount = hasSearch ? matches.length : loadedPokemon.length;
+
+  const dispatch = useDispatch<Dispatch>();
+  const {
+    pokemon,
+    pages,
+    isLoading: isCatalogLoading,
+    error: catalogError,
+    hasMore,
+  } = useSelector((state: RootState) => state.pokemonLoadMore);
+
+  useEffect(() => {
+    if (pages === 0) {
+      void dispatch(fetchMorePokemon());
+    }
+  }, [dispatch, pages]);
 
   return (
     <section className="catalog" aria-labelledby="catalog-title">
@@ -58,7 +74,7 @@ export default function PokemonCatalog({ pokemon, openPokemonModal }: PokemonCat
       )}
       {!hasSearch && (
         <>
-          <PokemonList pokemon={pokemon} openPokemonModal={openPokemonModal} />
+          <PokemonList pokemon={loadedPokemon} openPokemonModal={openPokemonModal} />
           <LoadMore />
         </>
       )}

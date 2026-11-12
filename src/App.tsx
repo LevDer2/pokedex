@@ -1,7 +1,6 @@
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import PokemonCatalog from './components/PokemonCatalog/PokemonCatalog';
-import { demoPokemon } from './data/demoPokemon';
 import PokemonModal, { type PokemonModalData } from './components/PokemonModal/PokemonModal';
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
@@ -51,7 +50,7 @@ function App() {
 
       <main id="main-content">
         <Hero />
-        <PokemonCatalog pokemon={demoPokemon} openPokemonModal={handleOpenPokemonModal} />
+        <PokemonCatalog openPokemonModal={handleOpenPokemonModal} />
         {isLoading && <p role="status">Loading a random Pokémon...</p>}
         {error && <p role="alert">{error}</p>}
       </main>
