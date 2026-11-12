@@ -6,7 +6,7 @@ import { fetchMorePokemon } from '../../state/pokemonApi/pokemonLoadMoreSlice.ts
 
 export default function LoadMore() {
   const dispatch = useDispatch<Dispatch>();
-  const { isLoading, error, hasMore } = useSelector((state: RootState) => state.pokemonLoadMore);
+  const { isLoading, hasMore } = useSelector((state: RootState) => state.pokemonLoadMore);
   return (
     <div className="catalog-more">
       <button

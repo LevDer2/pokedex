@@ -22,6 +22,7 @@ const initialState: LoadMorePokemonState = {
   pokemon: [],
   hasMore: true,
 };
+
 export const fetchMorePokemon = createAsyncThunk<
   LoadMoreResult,
   void,
@@ -47,6 +48,10 @@ export const fetchMorePokemon = createAsyncThunk<
           item.sprites.other?.['official-artwork']?.front_default ??
           item.sprites.front_default ??
           '',
+        types: item.types.map((typeName) => ({
+          type: typeName.type.name,
+          label: typeName.type.name.charAt(0).toUpperCase() + typeName.type.name.slice(1),
+        })),
       }));
 
       return {

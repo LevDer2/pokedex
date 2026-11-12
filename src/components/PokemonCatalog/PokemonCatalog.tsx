@@ -21,13 +21,7 @@ export default function PokemonCatalog({ openPokemonModal }: PokemonCatalogProps
   const resultCount = hasSearch ? matches.length : loadedPokemon.length;
 
   const dispatch = useDispatch<Dispatch>();
-  const {
-    pokemon,
-    pages,
-    isLoading: isCatalogLoading,
-    error: catalogError,
-    hasMore,
-  } = useSelector((state: RootState) => state.pokemonLoadMore);
+  const { pages } = useSelector((state: RootState) => state.pokemonLoadMore);
 
   useEffect(() => {
     if (pages === 0) {

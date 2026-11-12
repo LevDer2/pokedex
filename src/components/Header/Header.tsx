@@ -1,5 +1,6 @@
 import { MoonIcon, SunIcon } from '../Icons/Icons';
 import './Header.css';
+import { NavLink } from 'react-router';
 
 interface HeaderProps {
   onThemeToggle: () => void;
@@ -11,20 +12,25 @@ export default function Header({ onThemeToggle }: HeaderProps) {
       <a className="skip-link" href="#main-content">
         Перейти до вмісту
       </a>
-      <div className="brand" aria-label="Покедекс">
+      <div className="brand" aria-label="Pokedex">
         <span className="pokeball-logo" aria-hidden="true" />
         <span>Pokedex</span>
       </div>
       <nav className="main-nav" aria-label="Основна навігація">
-        <button type="button" className="nav-item is-active" aria-current="page">
+        <NavLink
+          className={({ isActive }) => (isActive ? 'nav-item is-active' : 'nav-item')}
+          to="/"
+          end
+        >
           Головна
-        </button>
-        <button type="button" className="nav-item">
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) => (isActive ? 'nav-item is-active' : 'nav-item')}
+          to="/favorites"
+        >
           Обране
-        </button>
-        <button type="button" className="nav-item">
-          Команда
-        </button>
+        </NavLink>
       </nav>
       <button
         className="theme-toggle"

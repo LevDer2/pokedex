@@ -92,6 +92,10 @@ export default function PokemonList({
             item.sprites.other?.['official-artwork']?.front_default ??
             item.sprites.front_default ??
             '',
+          types: item.types.map((typeName) => ({
+            type: typeName.type.name,
+            label: typeName.type.name.charAt(0).toUpperCase() + typeName.type.name.slice(1),
+          })),
         }))
       : pokemon;
 

@@ -39,6 +39,16 @@
   width: 18px;
   height: 18px;
 }
+.favorite-button.is-favorite {
+  color: var(--favorite-hover);
+}
+.favorite-button.is-favorite svg {
+  fill: currentColor;
+}
+.favorite-button:disabled {
+  cursor: default;
+  background: transparent;
+}
 .pokemon-artwork {
   display: flex;
   align-items: center;
@@ -85,6 +95,7 @@
   padding: 4px 8px;
   border-radius: 20px;
   color: #fff;
+  background: #596b84;
   font-size: 10px;
   line-height: 1.2;
   font-weight: 650;
@@ -107,6 +118,16 @@
 }
 .type-bug {
   background: #697f1b;
+}
+.type-electric {
+  color: #332200;
+  background: #ffd566;
+}
+.type-normal {
+  background: #5d6d80;
+}
+.type-psychic {
+  background: #bc2774;
 }
 @media (min-width: 1051px) {
   .pokemon-card {

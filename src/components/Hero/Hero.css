@@ -6,7 +6,7 @@
   background-color: var(--hero-bg);
   background-image:
     linear-gradient(var(--hero-overlay), var(--hero-overlay)),
-    url('../../assets/hero-landscape.svg');
+    var(--hero-bg-image);
   background-position: center 55%;
   background-size: cover;
   background-repeat: no-repeat;

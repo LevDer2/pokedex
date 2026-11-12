@@ -34,6 +34,7 @@
   --favorite-hover-bg: #fff0f3;
   --footer-text: #8c9db3;
   --hero-bg: #c5e9fd;
+  --hero-bg-image: url('../assets/hero-landscape-light.png');
   --hero-overlay: transparent;
   --hero-title: #122b48;
   --hero-text: #365973;
@@ -44,6 +45,7 @@
 :root:has(.pokedex-app[data-theme='dark']),
 [data-theme='dark'] {
   color-scheme: dark;
+  --hero-bg-image: url('../assets/hero-landscape-dark.png');
   --page-bg: #0d1727;
   --text: #e6edf8;
   --muted: #9aadc6;

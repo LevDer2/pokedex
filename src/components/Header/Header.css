@@ -46,14 +46,19 @@
   margin-left: auto;
 }
 .nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   position: relative;
   padding: 0 3px;
   background: none;
   border: 0;
   color: var(--nav-text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
+
 .nav-item:hover {
   color: var(--blue);
 }

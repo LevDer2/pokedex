@@ -9,6 +9,11 @@ export interface PokemonDetails {
       };
     };
   };
+  types: {
+    type: {
+      name: string;
+    };
+  }[];
 }
 
 interface PokemonType {
