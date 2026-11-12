@@ -7,6 +7,7 @@ import { getPokemonDetails, type PokemonDetails } from '../../api/pokemonApi.ts'
 interface PokemonListProps {
   names?: string[];
   pokemon?: PokemonCardProps[];
+  openPokemonModal: (id: number) => void;
 }
 
 interface PokemonListResult {
@@ -18,7 +19,11 @@ interface PokemonListResult {
 
 const EMPTY_NAMES: string[] = [];
 
-export default function PokemonList({ names = EMPTY_NAMES, pokemon = [] }: PokemonListProps) {
+export default function PokemonList({
+  names = EMPTY_NAMES,
+  pokemon = [],
+  openPokemonModal,
+}: PokemonListProps) {
   const [result, setResult] = useState<PokemonListResult | null>(null);
   const [attempt, setAttempt] = useState(0);
 
@@ -83,14 +88,17 @@ export default function PokemonList({ names = EMPTY_NAMES, pokemon = [] }: Pokem
       ? (currentResult?.pokemon ?? []).map((item) => ({
           number: String(item.id).padStart(3, '0'),
           name: item.name,
-          image: item.sprites.front_default ?? '',
+          image:
+            item.sprites.other?.['official-artwork']?.front_default ??
+            item.sprites.front_default ??
+            '',
         }))
       : pokemon;
 
   return (
     <div className="pokemon-grid">
       {cards.map((item) => (
-        <PokemonCard key={item.number} {...item} />
+        <PokemonCard key={item.number} {...item} openPokemonModal={openPokemonModal} />
       ))}
     </div>
   );

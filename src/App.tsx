@@ -27,17 +27,15 @@ function App() {
     }
   }, [pokemonDetailsModal]);
 
-  async function handleOpenPokemonModal() {
+  async function handleOpenPokemonModal(id?: number) {
     if (isLoading) return;
 
     setIsLoading(true);
     setError(null);
 
     try {
-      const randomId = Math.floor(Math.random() * 1025) + 1;
-
-      const result = await getPokemonModalData(randomId);
-
+      const pokemonId = id ?? Math.floor(Math.random() * 1025) + 1;
+      const result = await getPokemonModalData(pokemonId);
       setPokemonDetailsModal(result);
     } catch (error) {
       console.error(error);
@@ -53,7 +51,7 @@ function App() {
 
       <main id="main-content">
         <Hero />
-        <PokemonCatalog pokemon={demoPokemon} onRandomPokemon={handleOpenPokemonModal} />
+        <PokemonCatalog pokemon={demoPokemon} openPokemonModal={handleOpenPokemonModal} />
         {isLoading && <p role="status">Loading a random Pokémon...</p>}
         {error && <p role="alert">{error}</p>}
       </main>

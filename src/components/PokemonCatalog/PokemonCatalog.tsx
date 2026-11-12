@@ -9,10 +9,10 @@ import { POKEMON_DETAILS_LIMIT } from '../../api/pokemonApi';
 
 interface PokemonCatalogProps {
   pokemon: PokemonCardProps[];
-  onRandomPokemon: () => void;
+  openPokemonModal: () => void;
 }
 
-export default function PokemonCatalog({ pokemon, onRandomPokemon }: PokemonCatalogProps) {
+export default function PokemonCatalog({ pokemon, openPokemonModal }: PokemonCatalogProps) {
   const { query, matches, isLoading, error } = useSelector(
     (state: RootState) => state.pokemonSearch,
   );
@@ -21,7 +21,7 @@ export default function PokemonCatalog({ pokemon, onRandomPokemon }: PokemonCata
 
   return (
     <section className="catalog" aria-labelledby="catalog-title">
-      <CatalogToolbar onRandomPokemon={onRandomPokemon} />
+      <CatalogToolbar onRandomPokemon={openPokemonModal} />
       <div className="catalog-heading">
         <h2 id="catalog-title">{hasSearch ? 'Results of searching' : "Catalog Pokemon's"}</h2>
         <p>
@@ -48,7 +48,7 @@ export default function PokemonCatalog({ pokemon, onRandomPokemon }: PokemonCata
             </p>
           )}
           {matches.length > 0 ? (
-            <PokemonList names={matches} />
+            <PokemonList names={matches} openPokemonModal={openPokemonModal} />
           ) : (
             <p className="catalog-message" role="status">
               Not founded matches for: {query}
@@ -58,7 +58,7 @@ export default function PokemonCatalog({ pokemon, onRandomPokemon }: PokemonCata
       )}
       {!hasSearch && (
         <>
-          <PokemonList pokemon={pokemon} />
+          <PokemonList pokemon={pokemon} openPokemonModal={openPokemonModal} />
           <LoadMore />
         </>
       )}

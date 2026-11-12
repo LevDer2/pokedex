@@ -5,11 +5,12 @@ export interface PokemonCardProps {
   number: string;
   name: string;
   image: string;
+  openPokemonModal?: (id: number) => void;
 }
 
-export default function PokemonCard({ number, name, image }: PokemonCardProps) {
+export default function PokemonCard({ number, name, image, openPokemonModal }: PokemonCardProps) {
   return (
-    <article className="pokemon-card">
+    <article className="pokemon-card" onClick={() => openPokemonModal?.(Number(number))}>
       <button className="favorite-button" type="button" aria-label={`Додати ${name} до обраного`}>
         <HeartIcon />
       </button>

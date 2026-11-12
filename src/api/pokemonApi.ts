@@ -3,12 +3,12 @@ export interface PokemonDetails {
   name: string;
   sprites: {
     front_default: string | null;
+    other?: {
+      'official-artwork'?: {
+        front_default: string | null;
+      };
+    };
   };
-}
-
-interface PokemonSpecies {
-  id: number;
-  name: string;
 }
 
 interface PokemonType {
