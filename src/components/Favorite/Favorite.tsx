@@ -1,64 +1,15 @@
 import { Link } from 'react-router';
 import { HeartIcon } from '../Icons/Icons';
-import PokemonCard, { type PokemonCardProps } from '../PokemonCard/PokemonCard';
+import PokemonCard from '../PokemonCard/PokemonCard';
 import './Favorite.css';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../state/store.ts';
+import { deleteAllFavoritePokemon } from '../../state/pokemonApi/favoritesSlice.ts';
 
-const artworkBase =
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
+export default function Favorite() {
+  const favoritesPokemon = useSelector((state: RootState) => state.favorite);
+  const dispatch = useDispatch();
 
-const demoFavorites: readonly PokemonCardProps[] = [
-  {
-    number: '001',
-    name: 'Бульбазавр',
-    image: `${artworkBase}/1.png`,
-    types: [
-      { type: 'grass', label: 'Трав’яний' },
-      { type: 'poison', label: 'Отруйний' },
-    ],
-  },
-  {
-    number: '004',
-    name: 'Чармандер',
-    image: `${artworkBase}/4.png`,
-    types: [{ type: 'fire', label: 'Вогняний' }],
-  },
-  {
-    number: '007',
-    name: 'Сквіртл',
-    image: `${artworkBase}/7.png`,
-    types: [{ type: 'water', label: 'Водний' }],
-  },
-  {
-    number: '025',
-    name: 'Пікачу',
-    image: `${artworkBase}/25.png`,
-    types: [{ type: 'electric', label: 'Електричний' }],
-  },
-  {
-    number: '133',
-    name: 'Іві',
-    image: `${artworkBase}/133.png`,
-    types: [{ type: 'normal', label: 'Звичайний' }],
-  },
-  {
-    number: '150',
-    name: 'М’юту',
-    image: `${artworkBase}/150.png`,
-    types: [{ type: 'psychic', label: 'Психічний' }],
-  },
-  {
-    number: '151',
-    name: 'М’ю',
-    image: `${artworkBase}/151.png`,
-    types: [{ type: 'psychic', label: 'Психічний' }],
-  },
-];
-
-interface FavoriteProps {
-  pokemon?: readonly PokemonCardProps[];
-}
-
-export default function Favorite({ pokemon = demoFavorites }: FavoriteProps) {
   return (
     <section className="favorites" aria-labelledby="favorites-title">
       <header className="favorites-heading">
@@ -71,11 +22,11 @@ export default function Favorite({ pokemon = demoFavorites }: FavoriteProps) {
         </div>
       </header>
 
-      {pokemon.length > 0 ? (
+      {favoritesPokemon.length > 0 ? (
         <>
           <div className="favorites-grid">
-            {pokemon.map((item) => (
-              <PokemonCard key={item.number} {...item} isFavorite />
+            {favoritesPokemon.map((item) => (
+              <PokemonCard key={item.number} {...item} />
             ))}
           </div>
 
@@ -85,10 +36,14 @@ export default function Favorite({ pokemon = demoFavorites }: FavoriteProps) {
                 i
               </span>
               <span>
-                Покемонів в обраному: <strong>{pokemon.length}</strong>
+                Покемонів в обраному: <strong>{favoritesPokemon.length}</strong>
               </span>
             </p>
-            <button className="button favorites-clear" type="button" disabled>
+            <button
+              className="button favorites-clear"
+              type="button"
+              onClick={() => dispatch(deleteAllFavoritePokemon())}
+            >
               Очистити все
             </button>
           </div>

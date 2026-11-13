@@ -1,12 +1,14 @@
 import { HeartIcon } from '../Icons/Icons';
 import './PokemonCard.css';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../state/store.ts';
+import { addToFavorite } from '../../state/pokemonApi/favoritesSlice.ts';
 
 export interface PokemonCardProps {
   number: string;
   name: string;
   image: string;
   types?: { type: string; label: string }[];
-  isFavorite?: boolean;
   openPokemonModal?: (id: number) => void;
 }
 
@@ -15,21 +17,34 @@ export default function PokemonCard({
   name,
   image,
   types,
-  isFavorite = false,
   openPokemonModal,
 }: PokemonCardProps) {
+  const isFavorite = useSelector((state: RootState) =>
+    state.favorite.some((pokemon) => pokemon.number === number),
+  );
+  const dispatch = useDispatch();
+
   return (
-    <article className="pokemon-card" onClick={() => openPokemonModal?.(Number(number))}>
+    <article className="pokemon-card">
       <button
         className={`favorite-button${isFavorite ? ' is-favorite' : ''}`}
         type="button"
         aria-label={isFavorite ? `Видалити ${name} з обраного` : `Додати ${name} до обраного`}
-        disabled={isFavorite}
+        onClick={() =>
+          dispatch(
+            addToFavorite({
+              number,
+              name,
+              image,
+              types,
+            }),
+          )
+        }
       >
         <HeartIcon />
       </button>
 
-      <div className="pokemon-artwork">
+      <div className="pokemon-artwork" onClick={() => openPokemonModal?.(Number(number))}>
         {image ? (
           <img src={image} alt={name} width="200" height="200" loading="lazy" />
         ) : (
