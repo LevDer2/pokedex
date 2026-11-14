@@ -1,5 +1,7 @@
 import { useId } from 'react';
 import './PokemonAbility.css';
+import { IoIosInformationCircle } from 'react-icons/io';
+import { IoCloseOutline } from 'react-icons/io5';
 
 interface PokemonAbilityProps {
   name: string;
@@ -21,10 +23,7 @@ export default function PokemonAbility({ name, description }: PokemonAbilityProp
         aria-label={`About ${name}`}
       >
         {name}
-        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <circle cx="10" cy="10" r="7.5" />
-          <path d="M10 9v5M10 6v.5" />
-        </svg>
+        <IoIosInformationCircle />
       </button>
 
       <div
@@ -37,7 +36,8 @@ export default function PokemonAbility({ name, description }: PokemonAbilityProp
         <div className="pokemon-ability-panel-header">
           <span>Ability details</span>
           <button type="button" popoverTarget={panelId} popoverTargetAction="hide">
-            <span aria-hidden="true">×</span> Close
+            <IoCloseOutline />
+            Close
           </button>
         </div>
         <h3 id={titleId}>{name}</h3>

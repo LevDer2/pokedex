@@ -2,6 +2,7 @@ import { type Ref, useId } from 'react';
 import PokemonAbility from '../PokemonAbility/PokemonAbility';
 import PokemonEvolution, { type PokemonEvolutionStage } from '../PokemonEvolution/PokemonEvolution';
 import './PokemonModal.css';
+import { IoCloseOutline } from 'react-icons/io5';
 
 export type PokemonElement =
   | 'normal'
@@ -74,9 +75,7 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
         <span className="pokemon-modal-eyebrow">Pokémon details</span>
         <form method="dialog">
           <button className="pokemon-modal-close" aria-label="Close Pokémon details" autoFocus>
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m6 6 12 12M6 18 18 6" />
-            </svg>
+            <IoCloseOutline />
           </button>
         </form>
       </header>
@@ -148,7 +147,7 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
           <section className="pokemon-modal-stats" aria-label="Base stats">
             <div className="pokemon-modal-stats-heading">
               <h3>Base Stats</h3>
-              <span>0–255</span>
+              <span>0-255</span>
             </div>
             <dl className="pokemon-modal-stat-list">
               {statLabels.map(({ key, label }) => (

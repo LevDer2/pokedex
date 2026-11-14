@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import type { PokemonBadge } from '../PokemonModal/PokemonModal';
 import './PokemonEvolution.css';
+import { IoIosArrowForward } from 'react-icons/io';
 
 export interface PokemonEvolutionStage {
   number: string;
@@ -34,9 +35,7 @@ export default function PokemonEvolution({ paths, currentNumber }: PokemonEvolut
             >
               {index > 0 && (
                 <div className="pokemon-evolution-transition">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="m9 5 7 7-7 7" />
-                  </svg>
+                  <IoIosArrowForward />
                   {stage.condition && <span>{stage.condition}</span>}
                 </div>
               )}
