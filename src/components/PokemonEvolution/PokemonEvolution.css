@@ -6,17 +6,6 @@
   background:
     repeating-linear-gradient(135deg, transparent 0 18px, var(--page-bg) 18px 36px), var(--soft-bg);
 }
-.pokemon-evolution-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.pokemon-evolution-heading > span {
-  color: var(--text-secondary);
-  font-size: 11px;
-}
 .pokemon-evolution-path {
   display: flex;
   gap: 40px;
@@ -67,9 +56,9 @@
 }
 .pokemon-evolution-number {
   margin: 4px 0 10px;
-  color: var(--text-secondary);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
+  color: var(--card-number);
+  font-family: var(--font-numeric);
+  font-size: 0.75rem;
 }
 .pokemon-evolution-stage .pokemon-modal-badges {
   justify-content: center;
@@ -101,7 +90,8 @@
   width: 58px;
   margin-top: 6px;
   color: var(--text-secondary);
-  font-size: 10px;
+  font-size: 0.6875rem;
+  font-weight: 650;
   line-height: 1.4;
   overflow-wrap: anywhere;
 }

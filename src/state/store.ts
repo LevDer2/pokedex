@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import pokemonSearchReducer from './pokemonApi/pokemonSearchSlice.ts';
 import pokemonLoadMoreReducer from './pokemonApi/pokemonLoadMoreSlice.ts';
 import favoritesReducer from './pokemonApi/favoritesSlice.ts';
+import pokemonDetailsReducer from './pokemonModal/pokemonDetailsSlice.ts';
 
 export const store = configureStore({
   reducer: {
     pokemonSearch: pokemonSearchReducer,
     pokemonLoadMore: pokemonLoadMoreReducer,
     favorite: favoritesReducer,
+    details: pokemonDetailsReducer,
   },
 });
 

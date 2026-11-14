@@ -13,7 +13,8 @@
   border-radius: 11px;
   background: var(--field-bg);
   color: var(--field-text);
-  font-size: 13px;
+  font-size: 0.875rem;
+  font-weight: 650;
   cursor: pointer;
 }
 .type-filter > svg {
@@ -26,7 +27,6 @@
 @media (min-width: 1051px) {
   .type-filter select {
     height: 52px;
-    font-size: 15px;
   }
   .type-filter > svg {
     top: 16px;
@@ -34,7 +34,6 @@
 }
 @media (max-width: 580px) {
   .type-filter select {
-    font-size: 12px;
     padding-left: 12px;
   }
 }

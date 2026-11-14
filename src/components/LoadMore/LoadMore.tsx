@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from '../Icons/Icons';
+import { FaDownload } from 'react-icons/fa6';
 import './LoadMore.css';
 import type { Dispatch, RootState } from '../../state/store.ts';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,10 +15,9 @@ export default function LoadMore() {
         disabled={isLoading || !hasMore}
         onClick={() => void dispatch(fetchMorePokemon())}
       >
-        <ArrowDownIcon />
-        {isLoading ? 'Loading...' : 'Завантажити ще'}
+        <FaDownload />
+        {isLoading ? 'Loading…' : 'Load more'}
       </button>
-      <p>Попереду ще стільки відкриттів!</p>
     </div>
   );
 }

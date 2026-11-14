@@ -46,7 +46,7 @@ export default function PokemonList({
           names,
           attempt,
           pokemon: [],
-          error: "Can't upload cards of Pokemon. Try again!",
+          error: 'Could not load Pokémon cards. Please try again.',
         });
       }
     }
@@ -63,7 +63,7 @@ export default function PokemonList({
   if (names.length > 0 && !currentResult) {
     return (
       <p className="pokemon-list-message" role="status">
-        Loading cards of Pokemon...
+        Loading Pokémon cards…
       </p>
     );
   }

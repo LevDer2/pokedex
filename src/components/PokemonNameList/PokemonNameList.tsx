@@ -6,7 +6,7 @@ interface PokemonNameListProps {
 
 export default function PokemonNameList({ names }: PokemonNameListProps) {
   return (
-    <ul className="pokemon-name-list" aria-label="Знайдені покемони">
+    <ul className="pokemon-name-list" aria-label="Matching Pokémon">
       {names.map((name) => (
         <li className="pokemon-name-item" key={name}>
           {name}

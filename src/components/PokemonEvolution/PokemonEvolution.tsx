@@ -23,10 +23,7 @@ export default function PokemonEvolution({ paths, currentNumber }: PokemonEvolut
 
   return (
     <section className="pokemon-evolution" aria-labelledby={titleId}>
-      <div className="pokemon-evolution-heading">
-        <h3 id={titleId}>Еволюція</h3>
-        <span>Шлях розвитку покемона</span>
-      </div>
+      <h3 id={titleId}>Evolution</h3>
       {availablePaths.map((path) => (
         <ol className="pokemon-evolution-path" key={path.map((stage) => stage.number).join('-')}>
           {path.map((stage, index) => (
@@ -47,11 +44,11 @@ export default function PokemonEvolution({ paths, currentNumber }: PokemonEvolut
                 {stage.image ? (
                   <img src={stage.image} alt={stage.name} width="160" height="160" loading="lazy" />
                 ) : (
-                  <span>Зображення відсутнє</span>
+                  <span>Image unavailable</span>
                 )}
               </div>
               <p className="pokemon-evolution-name">{stage.name}</p>
-              <p className="pokemon-evolution-number">№ {stage.number}</p>
+              <p className="pokemon-evolution-number">#{stage.number}</p>
               <div className="pokemon-modal-badges">
                 {stage.types.map(({ type, label }) => (
                   <span key={type} className={`pokemon-modal-badge pokemon-modal-badge--${type}`}>
@@ -64,7 +61,7 @@ export default function PokemonEvolution({ paths, currentNumber }: PokemonEvolut
         </ol>
       ))}
       {availablePaths.length === 1 && availablePaths[0].length === 1 && (
-        <p className="pokemon-evolution-note">Цей покемон не має еволюцій.</p>
+        <p className="pokemon-evolution-note">This Pokémon does not evolve.</p>
       )}
     </section>
   );

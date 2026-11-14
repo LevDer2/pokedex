@@ -26,16 +26,15 @@
 
 .favorites-heading h1 {
   font-size: clamp(25px, 4vw, 38px);
-  letter-spacing: -0.04em;
-  line-height: 1.16;
 }
 
 .favorites-heading p,
 .favorites-empty p {
   margin-top: 9px;
   color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .favorites-grid {
@@ -67,6 +66,12 @@
   gap: 10px;
   color: var(--text-secondary);
   font-size: 14px;
+}
+
+.favorites-summary strong {
+  color: var(--secondary-button-text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
 }
 
 .favorites-info-icon {

@@ -1,4 +1,4 @@
-import { SearchIcon } from '../Icons/Icons';
+import { IoIosSearch } from 'react-icons/io';
 import './SearchBar.css';
 
 interface SearchBarProps {
@@ -11,14 +11,14 @@ export default function SearchBar({ isLoading, onClear }: SearchBarProps) {
     <div className="search-bar" role="search">
       <div className="search-field">
         <label className="visually-hidden" htmlFor="pokemon-search">
-          Searching for name
+          Search Pokémon by name
         </label>
-        <SearchIcon />
+        <IoIosSearch />
         <input
           id="pokemon-search"
           name="pokemon-search"
           type="search"
-          placeholder="Пошук за ім’ям…"
+          placeholder="Search by name…"
           autoComplete="off"
           autoCapitalize="none"
           spellCheck={false}
@@ -31,7 +31,7 @@ export default function SearchBar({ isLoading, onClear }: SearchBarProps) {
         />
       </div>
       <button className="button button-primary search-button" type="submit" disabled={isLoading}>
-        {isLoading ? 'Search...' : 'Found'}
+        {isLoading ? 'Searching…' : 'Search'}
       </button>
     </div>
   );

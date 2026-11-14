@@ -33,14 +33,16 @@ export default function PokemonCatalog({ openPokemonModal }: PokemonCatalogProps
     <section className="catalog" aria-labelledby="catalog-title">
       <CatalogToolbar onRandomPokemon={openPokemonModal} />
       <div className="catalog-heading">
-        <h2 id="catalog-title">{hasSearch ? 'Results of searching' : "Catalog Pokemon's"}</h2>
+        <h2 id="catalog-title" className="display-title">
+          {hasSearch ? 'Search Results' : 'Pokémon Catalog'}
+        </h2>
         <p>
-          Founded: <strong>{resultCount}</strong>
+          {hasSearch ? 'Matches' : 'Pokémon loaded'}: <strong>{resultCount}</strong>
         </p>
       </div>
       {isLoading && (
         <p className="catalog-message" role="status">
-          Searching Pokemon...
+          Searching Pokémon…
         </p>
       )}
       {error && (
@@ -50,18 +52,18 @@ export default function PokemonCatalog({ openPokemonModal }: PokemonCatalogProps
       )}
       {!isLoading && !error && hasSearch && (
         <>
-          <p className="catalog-search-query">All matches for: {query}</p>
+          <p className="catalog-search-query">Results for “{query}”</p>
           {matches.length > POKEMON_DETAILS_LIMIT && (
             <p className="catalog-search-query">
-              Shows {POKEMON_DETAILS_LIMIT} from {matches.length} query. Write your pokemon name
-              more clearly for more better results
+              Showing the first {POKEMON_DETAILS_LIMIT} of {matches.length} matches. Refine your
+              search to narrow the results.
             </p>
           )}
           {matches.length > 0 ? (
             <PokemonList names={matches} openPokemonModal={openPokemonModal} />
           ) : (
             <p className="catalog-message" role="status">
-              Not founded matches for: {query}
+              No Pokémon match “{query}”.
             </p>
           )}
         </>

@@ -1,11 +1,11 @@
 import SearchBar from '../SearchBar/SearchBar';
 import TypeFilter from '../TypeFilter/TypeFilter';
-import { DiceIcon } from '../Icons/Icons';
 import type { SubmitEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { Dispatch, RootState } from '../../state/store';
 import './CatalogToolbar.css';
 import { fetchPokemonByName, resetSearch } from '../../state/pokemonApi/pokemonSearchSlice';
+import { IoDiceOutline } from 'react-icons/io5';
 
 interface CatalogToolbarProps {
   onRandomPokemon: () => void;
@@ -36,8 +36,8 @@ export default function CatalogToolbar({ onRandomPokemon }: CatalogToolbarProps)
       <SearchBar isLoading={isLoading} onClear={() => dispatch(resetSearch())} />
       <TypeFilter />
       <button className="button button-random" type="button" onClick={() => onRandomPokemon()}>
-        <DiceIcon />
-        Випадковий покемон
+        <IoDiceOutline />
+        Random Pokémon
       </button>
     </form>
   );

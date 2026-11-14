@@ -141,16 +141,15 @@ body:has(.pokemon-modal[open]) {
   margin-bottom: 12px;
 }
 .pokemon-modal-number {
-  color: var(--muted);
-  font-size: 15px;
+  color: var(--card-number);
+  font-family: var(--font-numeric);
+  font-size: 0.875rem;
   font-weight: 600;
 }
 .pokemon-modal h2 {
   margin: 4px 0 14px;
   overflow-wrap: anywhere;
   font-size: clamp(28px, 3.5vw, 38px);
-  line-height: 1.15;
-  letter-spacing: -0.04em;
 }
 
 .pokemon-modal-badges {
@@ -225,8 +224,9 @@ body:has(.pokemon-modal[open]) {
 .pokemon-modal-description {
   margin-top: 18px;
   color: var(--text-secondary);
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 .pokemon-modal-facts {
   display: grid;
@@ -240,12 +240,16 @@ body:has(.pokemon-modal[open]) {
 }
 .pokemon-modal-facts dt {
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .pokemon-modal-facts dd {
   margin: 5px 0 0;
-  font-size: 14px;
-  font-weight: 650;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
 }
 .pokemon-modal-stats-heading {
@@ -255,8 +259,9 @@ body:has(.pokemon-modal[open]) {
   gap: 12px;
 }
 .pokemon-modal-stats-heading > span {
-  color: var(--muted);
-  font-size: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-numeric);
+  font-size: 0.75rem;
   white-space: nowrap;
 }
 .pokemon-modal-stat-list {
@@ -272,7 +277,8 @@ body:has(.pokemon-modal[open]) {
 }
 .pokemon-modal-stat dt {
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 0.8125rem;
+  font-weight: 600;
 }
 .pokemon-modal-stat dd {
   display: flex;
@@ -295,10 +301,10 @@ body:has(.pokemon-modal[open]) {
 }
 .pokemon-modal-stat-value {
   min-width: 3ch;
-  font-size: 11px;
+  font-family: var(--font-numeric);
+  font-size: 0.8125rem;
   font-weight: 700;
   text-align: right;
-  font-variant-numeric: tabular-nums;
 }
 .pokemon-modal-stat--hp {
   --stat-color: #ff626b;
@@ -322,14 +328,9 @@ body:has(.pokemon-modal[open]) {
 .pokemon-modal-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: flex-end;
   padding: 20px 32px;
   border-top: 1px solid var(--border);
-}
-.pokemon-modal-footer > span {
-  color: var(--text-secondary);
-  font-size: 12px;
 }
 .pokemon-modal-footer .button {
   min-height: 46px;
@@ -360,14 +361,8 @@ body:has(.pokemon-modal[open]) {
   .pokemon-modal h2 {
     font-size: 32px;
   }
-  .pokemon-modal-description {
-    font-size: 14px;
-  }
   .pokemon-modal-footer {
     padding: 18px 20px;
-  }
-  .pokemon-modal-footer > span {
-    display: none;
   }
   .pokemon-modal-footer form,
   .pokemon-modal-footer .button {

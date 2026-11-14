@@ -7,8 +7,10 @@
   padding: 0 20px;
   border: 1px solid transparent;
   border-radius: 11px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
   transition:
     background 0.18s,
     box-shadow 0.18s,
@@ -16,11 +18,11 @@
 }
 .button-primary {
   color: #fff;
-  background: var(--blue);
+  background: var(--primary-button-bg);
   box-shadow: 0 4px 10px #2d7cff26;
 }
 .button-primary:hover {
-  background: var(--blue-dark);
+  background: var(--primary-button-hover);
   box-shadow: 0 5px 14px #2d7cff38;
 }
 .button:active {

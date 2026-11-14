@@ -7,6 +7,8 @@
   --text-secondary: #456181;
   --blue: #2d7cff;
   --blue-dark: #1761d6;
+  --primary-button-bg: #1761d6;
+  --primary-button-hover: #144eac;
   --border: #dce7f3;
   --header-border: #e9eff7;
   --nav-text: #627897;
@@ -16,7 +18,7 @@
   --field-bg: #fff;
   --field-text: #244568;
   --field-icon: #7391b8;
-  --placeholder: #8a9db7;
+  --placeholder: #627897;
   --border-hover: #a7c9f4;
   --secondary-button-text: #216bef;
   --secondary-button-bg: #f4f9ff;
@@ -28,13 +30,13 @@
   --card-shadow: 0 2px 4px #24467507;
   --card-shadow-hover: 0 8px 22px #406da014;
   --card-title: #172f52;
-  --card-number: #8197b4;
+  --card-number: #547092;
   --favorite-icon: #6885ad;
   --favorite-hover: #f14e65;
   --favorite-hover-bg: #fff0f3;
   --footer-text: #8c9db3;
   --hero-bg: #c5e9fd;
-  --hero-bg-image: url('../assets/hero-landscape-light.png');
+  --hero-bg-image: url('../assets/hero-landscape-light.webp');
   --hero-overlay: transparent;
   --hero-title: #122b48;
   --hero-text: #365973;
@@ -45,13 +47,15 @@
 :root:has(.pokedex-app[data-theme='dark']),
 [data-theme='dark'] {
   color-scheme: dark;
-  --hero-bg-image: url('../assets/hero-landscape-dark.png');
+  --hero-bg-image: url('../assets/hero-landscape-dark.webp');
   --page-bg: #0d1727;
   --text: #e6edf8;
   --muted: #9aadc6;
   --text-secondary: #b5c7df;
   --blue: #3986ff;
   --blue-dark: #2674ed;
+  --primary-button-bg: #1e66da;
+  --primary-button-hover: #1857bf;
   --border: #2c3d56;
   --header-border: #26364e;
   --nav-text: #a5b7d0;

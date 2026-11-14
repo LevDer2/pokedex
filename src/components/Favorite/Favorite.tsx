@@ -1,24 +1,34 @@
 import { Link } from 'react-router';
-import { HeartIcon } from '../Icons/Icons';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import './Favorite.css';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../state/store.ts';
 import { deleteAllFavoritePokemon } from '../../state/pokemonApi/favoritesSlice.ts';
+import { IoHeart } from 'react-icons/io5';
+import { toast } from 'react-toastify';
 
-export default function Favorite() {
+interface FavoriteProps {
+  openPokemonModal: (id?: number) => void;
+}
+
+export default function Favorite({ openPokemonModal }: FavoriteProps) {
   const favoritesPokemon = useSelector((state: RootState) => state.favorite);
   const dispatch = useDispatch();
-
+  function deleteAllPokemonsFromFavorite() {
+    dispatch(deleteAllFavoritePokemon());
+    toast.error("You delete all Pokemon's from Favorite");
+  }
   return (
     <section className="favorites" aria-labelledby="favorites-title">
       <header className="favorites-heading">
         <span className="favorites-heart">
-          <HeartIcon />
+          <IoHeart />
         </span>
         <div>
-          <h1 id="favorites-title">Моє обране</h1>
-          <p>Тут зберігаються покемони, яких ти додав до обраного.</p>
+          <h1 id="favorites-title" className="display-title">
+            My Favorites
+          </h1>
+          <p>Keep your favorite Pokémon in one place.</p>
         </div>
       </header>
 
@@ -26,7 +36,7 @@ export default function Favorite() {
         <>
           <div className="favorites-grid">
             {favoritesPokemon.map((item) => (
-              <PokemonCard key={item.number} {...item} />
+              <PokemonCard key={item.number} {...item} openPokemonModal={openPokemonModal} />
             ))}
           </div>
 
@@ -36,27 +46,27 @@ export default function Favorite() {
                 i
               </span>
               <span>
-                Покемонів в обраному: <strong>{favoritesPokemon.length}</strong>
+                Saved Pokémon: <strong>{favoritesPokemon.length}</strong>
               </span>
             </p>
             <button
               className="button favorites-clear"
               type="button"
-              onClick={() => dispatch(deleteAllFavoritePokemon())}
+              onClick={() => deleteAllPokemonsFromFavorite()}
             >
-              Очистити все
+              Clear all
             </button>
           </div>
         </>
       ) : (
         <div className="favorites-empty">
           <span className="favorites-heart">
-            <HeartIcon />
+            <IoHeart />
           </span>
-          <h2>Обране поки порожнє</h2>
-          <p>Додай покемонів із каталогу, щоб бачити їх тут.</p>
+          <h2>No favorites yet</h2>
+          <p>Tap the heart on a Pokémon card to save it here.</p>
           <Link className="button button-primary" to="/">
-            До каталогу
+            Browse Pokémon
           </Link>
         </div>
       )}

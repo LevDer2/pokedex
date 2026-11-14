@@ -40,7 +40,7 @@
   }
   .button-random {
     gap: 6px;
-    font-size: 10px;
+    font-size: 0.8125rem;
     padding-inline: 8px;
   }
   .button-random svg {

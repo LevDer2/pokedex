@@ -50,8 +50,10 @@
 }
 .pokemon-ability-panel-header > span {
   color: var(--text-secondary);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .pokemon-ability-panel-header button {
   display: inline-flex;
@@ -78,7 +80,8 @@
 }
 .pokemon-ability-panel p {
   color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  text-wrap: pretty;
   overflow-wrap: anywhere;
 }

@@ -63,7 +63,7 @@ export async function searchPokemon(name: string, signal?: AbortSignal): Promise
   const query = name.trim().toLowerCase().replace(/\s+/g, '-');
 
   if (!query) {
-    throw new Error('Вкажи ім’я покемона.');
+    throw new Error('Enter a Pokémon name.');
   }
 
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(query)}`, {
@@ -72,7 +72,7 @@ export async function searchPokemon(name: string, signal?: AbortSignal): Promise
 
   if (!response.ok) {
     throw new Error(
-      response.status === 404 ? 'Покемона не знайдено.' : 'Не вдалося завантажити покемона.',
+      response.status === 404 ? 'Pokémon not found.' : 'Could not load Pokémon details.',
     );
   }
 
@@ -108,7 +108,7 @@ export async function getPokemonNames(): Promise<string[]> {
     const response = await fetch(nextUrl);
 
     if (!response.ok) {
-      throw new Error("Couldn't upload Pokemon's");
+      throw new Error('Could not load the Pokémon list.');
     }
 
     const data: PokemonListResponse = await response.json();
@@ -132,7 +132,7 @@ export async function getPokemonNamesByType(type: string): Promise<string[]> {
   const response = await fetch(`https://pokeapi.co/api/v2/type/${encodeURIComponent(type)}`);
 
   if (!response.ok) {
-    throw new Error('Failed to load Pokemon types');
+    throw new Error('Could not load Pokémon by type.');
   }
 
   const data: PokemonTypeResponse = await response.json();

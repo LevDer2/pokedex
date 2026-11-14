@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ChevronDownIcon } from '../Icons/Icons';
+import { GoChevronDown } from 'react-icons/go';
 import './TypeFilter.css';
 import { getPokemonTypes } from '../../api/pokemonApi';
 
@@ -29,7 +29,7 @@ export default function TypeFilter() {
   return (
     <div className="type-filter">
       <label className="visually-hidden" htmlFor="pokemon-type">
-        Pokemon type:
+        Pokémon type
       </label>
 
       <select id="pokemon-type" name="pokemon-type" defaultValue="all">
@@ -42,7 +42,7 @@ export default function TypeFilter() {
         ))}
       </select>
 
-      <ChevronDownIcon />
+      <GoChevronDown />
     </div>
   );
 }

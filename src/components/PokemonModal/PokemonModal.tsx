@@ -57,12 +57,12 @@ interface PokemonModalProps {
 }
 
 const statLabels = [
-  { key: 'hp', label: 'Здоров’я', short: 'HP' },
-  { key: 'attack', label: 'Атака', short: 'ATK' },
-  { key: 'defense', label: 'Захист', short: 'DEF' },
-  { key: 'specialAttack', label: 'Спец. атака', short: 'SPA' },
-  { key: 'specialDefense', label: 'Спец. захист', short: 'SPD' },
-  { key: 'speed', label: 'Швидкість', short: 'SPE' },
+  { key: 'hp', label: 'HP' },
+  { key: 'attack', label: 'Attack' },
+  { key: 'defense', label: 'Defense' },
+  { key: 'specialAttack', label: 'Sp. Atk' },
+  { key: 'specialDefense', label: 'Sp. Def' },
+  { key: 'speed', label: 'Speed' },
 ] as const;
 
 export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
@@ -71,9 +71,9 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
   return (
     <dialog className="pokemon-modal" ref={ref} aria-labelledby={titleId}>
       <header className="pokemon-modal-header">
-        <span className="pokemon-modal-eyebrow">World of Pokemon's</span>
+        <span className="pokemon-modal-eyebrow">Pokémon details</span>
         <form method="dialog">
-          <button className="pokemon-modal-close" aria-label="Close Modal" autoFocus>
+          <button className="pokemon-modal-close" aria-label="Close Pokémon details" autoFocus>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="m6 6 12 12M6 18 18 6" />
             </svg>
@@ -91,11 +91,11 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
             {pokemon.image ? (
               <img src={pokemon.image} alt={pokemon.name} width="360" height="360" />
             ) : (
-              <span className="pokemon-modal-no-image">There is no image</span>
+              <span className="pokemon-modal-no-image">Image unavailable</span>
             )}
           </div>
-          <section className="pokemon-modal-weaknesses" aria-label="Pokemon Weaknesses">
-            <h3>Weakness</h3>
+          <section className="pokemon-modal-weaknesses" aria-label="Pokémon weaknesses">
+            <h3>Weaknesses</h3>
             <div className="pokemon-modal-badges">
               {pokemon.weaknesses.map(({ type, label }) => (
                 <span key={type} className={`pokemon-modal-badge pokemon-modal-badge--${type}`}>
@@ -107,9 +107,11 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
         </div>
 
         <div className="pokemon-modal-details">
-          <p className="pokemon-modal-number">№ {pokemon.number}</p>
-          <h2 id={titleId}>{pokemon.name}</h2>
-          <div className="pokemon-modal-badges" aria-label="Типи покемона">
+          <p className="pokemon-modal-number">#{pokemon.number}</p>
+          <h2 id={titleId} className="display-title">
+            {pokemon.name}
+          </h2>
+          <div className="pokemon-modal-badges" aria-label="Pokémon types">
             {pokemon.types.map(({ type, label }) => (
               <span key={type} className={`pokemon-modal-badge pokemon-modal-badge--${type}`}>
                 {label}
@@ -132,7 +134,7 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
               <dd>{pokemon.category}</dd>
             </div>
             <div>
-              <dt>Abilities</dt>
+              <dt>Ability</dt>
               <dd>
                 <PokemonAbility
                   key={pokemon.number}
@@ -143,10 +145,10 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
             </div>
           </dl>
 
-          <section className="pokemon-modal-stats" aria-label="Базові характеристики">
+          <section className="pokemon-modal-stats" aria-label="Base stats">
             <div className="pokemon-modal-stats-heading">
-              <h3>Stats</h3>
-              <span>from 0 to 255</span>
+              <h3>Base Stats</h3>
+              <span>0–255</span>
             </div>
             <dl className="pokemon-modal-stat-list">
               {statLabels.map(({ key, label }) => (
@@ -174,9 +176,8 @@ export default function PokemonModal({ ref, pokemon }: PokemonModalProps) {
       )}
 
       <footer className="pokemon-modal-footer">
-        <span>Кожен покемон — нове відкриття.</span>
         <form method="dialog">
-          <button className="button button-primary">Повернутися до каталогу</button>
+          <button className="button button-primary">Back to catalog</button>
         </form>
       </footer>
     </dialog>

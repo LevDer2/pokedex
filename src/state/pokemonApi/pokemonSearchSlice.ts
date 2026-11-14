@@ -57,7 +57,7 @@ export const fetchPokemonByName = createAsyncThunk<
         matches,
       };
     } catch {
-      return rejectWithValue("Can not download Pokemon's list");
+      return rejectWithValue('Could not load search results. Please try again.');
     }
   },
   {
@@ -96,7 +96,7 @@ const pokemonSearchSlice = createSlice({
       })
       .addCase(fetchPokemonByName.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload ?? 'Try search your Pokemon later';
+        state.error = action.payload ?? 'Search failed. Please try again.';
       });
   },
 });

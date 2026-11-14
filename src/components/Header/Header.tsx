@@ -1,6 +1,6 @@
-import { MoonIcon, SunIcon } from '../Icons/Icons';
 import './Header.css';
 import { NavLink } from 'react-router';
+import { IoMoonOutline, IoSunnyOutline } from 'react-icons/io5';
 
 interface HeaderProps {
   onThemeToggle: () => void;
@@ -10,40 +10,42 @@ export default function Header({ onThemeToggle }: HeaderProps) {
   return (
     <header className="site-header">
       <a className="skip-link" href="#main-content">
-        Перейти до вмісту
+        Skip to main content
       </a>
-      <div className="brand" aria-label="Pokedex">
+      <div className="brand">
         <span className="pokeball-logo" aria-hidden="true" />
-        <span>Pokedex</span>
+        <span>
+          Poké<span className="brand-accent">dex</span>
+        </span>
       </div>
-      <nav className="main-nav" aria-label="Основна навігація">
+      <nav className="main-nav" aria-label="Main navigation">
         <NavLink
           className={({ isActive }) => (isActive ? 'nav-item is-active' : 'nav-item')}
           to="/"
           end
         >
-          Головна
+          Home
         </NavLink>
 
         <NavLink
           className={({ isActive }) => (isActive ? 'nav-item is-active' : 'nav-item')}
           to="/favorites"
         >
-          Обране
+          Favorites
         </NavLink>
       </nav>
       <button
         className="theme-toggle"
         onClick={onThemeToggle}
         type="button"
-        aria-label="Змінити тему"
-        title="Змінити тему"
+        aria-label="Toggle color theme"
+        title="Toggle color theme"
       >
         <span className="theme-icon-moon">
-          <MoonIcon />
+          <IoMoonOutline />
         </span>
         <span className="theme-icon-sun">
-          <SunIcon />
+          <IoSunnyOutline />
         </span>
       </button>
     </header>

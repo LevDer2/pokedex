@@ -18,7 +18,7 @@ export default function PokemonAbility({ name, description }: PokemonAbilityProp
         className="pokemon-ability-trigger"
         type="button"
         popoverTarget={panelId}
-        aria-label={`Про здібність: ${name}`}
+        aria-label={`About ${name}`}
       >
         {name}
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -35,9 +35,9 @@ export default function PokemonAbility({ name, description }: PokemonAbilityProp
         aria-labelledby={titleId}
       >
         <div className="pokemon-ability-panel-header">
-          <span>Про здібність</span>
+          <span>Ability details</span>
           <button type="button" popoverTarget={panelId} popoverTargetAction="hide">
-            <span aria-hidden="true">×</span> Закрити
+            <span aria-hidden="true">×</span> Close
           </button>
         </div>
         <h3 id={titleId}>{name}</h3>
